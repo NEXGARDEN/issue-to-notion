@@ -72,11 +72,11 @@ def main():
             setattr(row,property_status,state_open)
 
         elif action_type == "labeled" or action_type == "unlabeled":
-            if state_label is not empty
+            if state_label != "":
                 split_labels = state_label.split(",")
                 print("Split Label: ", split_labels)
                 setattr(row,property_label,split_labels)
-            else
+            else:
                 print("Set Label: ", state_label)
                 setattr(row,property_label,state_label)
 
