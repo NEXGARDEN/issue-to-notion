@@ -43,7 +43,7 @@ def main():
     issue_title = github_event_json["issue"]["title"]
     issue_link = github_event_json["issue"]["html_url"]
 
-    print("action_type is",action_type)
+    print("action_type is", action_type)
 
     # Check action type
     if action_type == "opened":
@@ -55,6 +55,7 @@ def main():
         upload_body_with_markdown(row)
     else:
         row = get_or_create_row(cv,issue_number,issue_title)
+        print("Row: ", row)
 
         if action_type == "edited":
             clear_page(row)
@@ -71,10 +72,10 @@ def main():
             setattr(row,property_status,state_open)
 
         elif action_type == "labeled" or action_type == "unlabeled":
-            print("Set Label: ")
-            print(state_label)
+            print("Set Label: ", state_label)
             setattr(row,property_label,state_label)
-        # TODO
+        else:
+            print("Unused Action Type: ", action_type)
 
 
 def upload_body_with_markdown(row):
