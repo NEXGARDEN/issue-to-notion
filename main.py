@@ -74,8 +74,12 @@ def main():
         elif action_type == "labeled" or action_type == "unlabeled":
             if state_label is not empty
                 split_labels = state_label.split(",")
-            print("Set Label: ", state_label)
-            setattr(row,property_label,split_labels)
+                print("Split Label: ", split_labels)
+                setattr(row,property_label,split_labels)
+            else
+                print("Set Label: ", state_label)
+                setattr(row,property_label,state_label)
+
         else:
             print("Unused Action Type: ", action_type)
 
