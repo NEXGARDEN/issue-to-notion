@@ -71,6 +71,8 @@ def main():
             setattr(row,property_status,state_open)
 
         elif action_type == "labeled" or action_type == "unlabeled":
+            print("Set Label: ")
+            print(state_label)
             setattr(row,property_label,state_label)
         # TODO
 
