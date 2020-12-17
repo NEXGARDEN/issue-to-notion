@@ -9,10 +9,16 @@ from md2notion.upload import upload, convert, uploadBlock
 path = os.environ.get("GITHUB_EVENT_PATH")
 token = os.environ.get("NOTION_TOKEN")
 database_url = os.environ.get("DATABASE_URL")
-property_name = os.environ.get("PROPERTY_NAME","status")
-state_open = os.environ.get("STATE_OPEN","open")
-state_closed = os.environ.get("STATE_CLOSED","closed")
+property_status = os.environ.get("PROPERTY_STATUS","status")
+state_open = os.environ.get("STATE_STATUS_OPEN","open")
+state_closed = os.environ.get("STATE_STATUS_CLOSED","closed")
 
+property_repo = os.environ.get("PROPERTY_REPO","Repository")
+state_repo = os.environ.get("STATE_REPO","Unknown")
+property_body = os.environ.get("PROPERTY_BODY","Body")
+state_body = os.environ.get("STATE_BODY")
+property_label = os.environ.get("PROPERTY_LABEL","Label")
+state_label = os.environ.get("STATE_LABEL")
 
 # Get the event string from github
 with open(path,"r") as f:
@@ -56,16 +62,16 @@ def main():
             upload_body_with_markdown(row)
 
         elif action_type == "closed":
-            setattr(row,property_name,state_closed)
+            setattr(row,property_status,state_closed)
 
         elif action_type == "deleted":
             pass
         # TODO
         elif action_type == "reopened":
-            setattr(row,property_name,state_open)
+            setattr(row,property_status,state_open)
 
         elif action_type == "labeled" or action_type == "unlabeled":
-            pass
+            setattr(row,property_label,state_label)
         # TODO
 
 
@@ -106,7 +112,9 @@ def createRow(cv, issue_number, issue_title):
     # Add row to notion collection
     row = cv.collection.add_row()
     row.name = "[#"+str(issue_number)+"] "+issue_title
-    setattr(row,property_name,state_open)
+    setattr(row,property_status,state_open)
+    setattr(row,property_repo,state_repo)
+    setattr(row,property_label,state_label)
 
     return row
 
