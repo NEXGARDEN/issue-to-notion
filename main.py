@@ -44,12 +44,6 @@ def main():
 
     global github_event_json
     global cv
-
-    # Assignee Contact Table Search
-    contacts = json.loads(contact_table)
-    assignee = contacts[state_assigned]
-    # print("Contacts is: ",contacts)
-    print("Assignee is: ", assignee)
     
     # Get issue title, body and link
     action_type = github_event_json["action"]
@@ -93,7 +87,14 @@ def main():
         elif action_type == "created":
             setattr(row,property_comment,state_comment)
         elif action_type == "assigned" or action_type == "unassigned":
-            setattr(row,property_assigned,state_assigned)
+            # Assignee Contact Table Search
+            contacts = json.loads(contact_table)
+            old_list = getattr(row,property_assigned)
+            assignee = contacts[state_assigned]
+            print("Assignee is: ", assignee)
+            print("Old List: ", old_list)
+            setattr(row,property_assigned,assignee)
+        
         elif action_type == "labeled" or action_type == "unlabeled":
             if state_label != "":
                 split_labels = state_label.split(",")
