@@ -46,7 +46,7 @@ def main():
     global cv
 
     # Assignee Contact Table Search
-    contacts = json.load(contact_table)
+    contacts = json.loads(contact_table)
     #assignee = contacts[state_assigned]
     print("Contacts is: ",contacts)
     #print("Assignee is: ", assignee)
