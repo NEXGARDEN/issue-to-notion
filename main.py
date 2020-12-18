@@ -48,7 +48,7 @@ def main():
     # Assignee Contact Table Search
     contacts = json.loads(contact_table)
     #assignee = contacts[state_assigned]
-    print(contacts)
+    print("Contacts is: ",contacts)
     #print("Assignee is: ", assignee)
     
     # Get issue title, body and link
