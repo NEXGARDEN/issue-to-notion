@@ -151,13 +151,13 @@ def createRow(cv, issue_number, issue_title):
     row.task = "[#"+str(issue_number)+"] "+issue_title
     setattr(row,property_issue,state_issue_open)
     setattr(row,property_repo,state_repo)
-    if not state_assigned:
+    if state_assigned != "":
         split_assigned = state_assigned.split(",")
         setattr(row,property_assigned,split_assigned)
-    if not state_label:
+    if state_label != "":
         split_labels = state_label.split(",")
         setattr(row,property_label,split_labels)
-    if state_milestone == "N/A" or not state_milestone:
+    if state_milestone == "N/A" or state_milestone == "":
         setattr(row,property_status,"Planned")
     else:
         setattr(row,property_status,"In Progress")
