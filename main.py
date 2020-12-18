@@ -46,7 +46,8 @@ def main():
     global cv
 
     # Assignee Contact Table Search
-    assignee = contact_table[state_assigned]
+    contacts = json.loads(contact_table)
+    assignee = contacts[state_assigned]
     print("Assignee is: ", assignee)
     
     # Get issue title, body and link
