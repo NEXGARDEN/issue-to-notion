@@ -16,12 +16,14 @@ state_issue_open = os.environ.get("STATE_ISSUE_OPEN","open")
 state_issue_closed = os.environ.get("STATE_ISSUE_CLOSED","closed")
 property_repo = os.environ.get("PROPERTY_REPO","Repository")
 state_repo = os.environ.get("STATE_REPO","Unknown")
-property_body = os.environ.get("PROPERTY_BODY","Body")
+property_body = os.environ.get("PROPERTY_BODY","Issue Body")
 state_body = os.environ.get("STATE_BODY")
 property_label = os.environ.get("PROPERTY_LABEL","Label")
 state_label = os.environ.get("STATE_LABEL")
 property_milestone = os.environ.get("PROPERTY_MILESTONE","N/A")
 state_milestone = os.environ.get("STATE_MILESTONE")
+property_comment = os.environ.get("PROPERTY_COMMENT","Description")
+state_comment = os.environ.get("STATE_COMMENT")
 
 # Get the event string from github
 with open(path,"r") as f:
@@ -79,6 +81,8 @@ def main():
                 setattr(row,property_status,"Planned")
             else:
                 setattr(row,property_status,"In Progress")
+        elif action_type == "created":
+            setattr(row,property_comment,state_comment)
 
         elif action_type == "labeled" or action_type == "unlabeled":
             if state_label != "":
