@@ -86,34 +86,27 @@ def main():
                 setattr(row,property_status,"In Progress")
         
         elif action_type == "created":
+            print("Set Last Comment: ", split_assigned)
             setattr(row,property_comment,state_comment)
         
         elif action_type == "assigned" or action_type == "unassigned":
-            if state_assigned != "":
-                split_assigned = state_assigned.split(",")
-                print("Split Label: ", split_labels)
-                setattr(row,property_assigned,split_assigned)
-            else:          
-                print("Assignee is: ", state_assigned)
-                setattr(row,property_assigned,state_assigned)
+            split_assigned = state_assigned.split(",")
+            print("Set Assigned: ", split_assigned)
+            setattr(row,property_assigned,split_assigned)
         
         elif action_type == "labeled" or action_type == "unlabeled":
-            if state_label != "":
-                split_labels = state_label.split(",")
-                print("Split Label: ", split_labels)
-                setattr(row,property_label,split_labels)
-            else:
-                print("Set Label: ", state_label)
-                setattr(row,property_label,state_label)
+            split_labels = state_label.split(",")
+            print("Set Labels: ", split_labels)
+            setattr(row,property_label,split_labels)
         
         elif action_type == "milestoned":
-                print("Set Milestone: ", state_milestone)
-                setattr(row,property_milestone,state_milestone)
-                setattr(row,property_status,"In Progress")
+            print("Set Milestone: ", state_milestone)
+            setattr(row,property_milestone,state_milestone)
+            setattr(row,property_status,"In Progress")
         elif action_type == "demilestoned":
-                print("Set Milestone: ", "Planned")
-                setattr(row,property_milestone,"N/A")
-                setattr(row,property_status,"Planned")
+            print("Remove Milestone")
+            setattr(row,property_milestone,"N/A")
+            setattr(row,property_status,"Planned")
         
         else:
             print("Unused Action Type: ", action_type)
