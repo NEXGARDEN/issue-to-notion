@@ -134,7 +134,7 @@ def get_row_with_IssueNumber(number):
 def createRow(cv, issue_number, issue_title):
     # Add row to notion collection
     row = cv.collection.add_row()
-    row.name = "[#"+str(issue_number)+"] "+issue_title
+    row.task = "[#"+str(issue_number)+"] "+issue_title
     setattr(row,property_issue,state_issue_open)
     setattr(row,property_repo,state_repo)
     setattr(row,property_label,state_label)
