@@ -169,8 +169,10 @@ def createRow(cv, issue_number, issue_title):
 def get_row(cv, issue_number, issue_title):
     row = get_row_with_IssueNumber(issue_number)
     if not row:
-        print("Sleeping for 20")
-        time.sleep(20) # Wait for open action to finish
+        # Try and wait for open action to finish
+        print ("Start Wait: ", time.ctime())
+        time.sleep(25)
+        print ("End Wait: ", time.ctime())
         row = get_row_with_IssueNumber(issue_number)
     if not row:    
         # row = createRow(cv, issue_number, issue_title)
