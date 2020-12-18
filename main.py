@@ -47,9 +47,9 @@ def main():
 
     # Assignee Contact Table Search
     contacts = json.loads(contact_table)
-    #assignee = contacts[state_assigned]
-    print("Contacts is: ",contacts)
-    #print("Assignee is: ", assignee)
+    assignee = contacts[state_assigned]
+    # print("Contacts is: ",contacts)
+    print("Assignee is: ", assignee)
     
     # Get issue title, body and link
     action_type = github_event_json["action"]
