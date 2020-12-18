@@ -61,7 +61,7 @@ def main():
         row.children.add_new(BookmarkBlock, title=issue_title, link=issue_link)
         upload_body_with_markdown(row)
     else:
-        row = get_or_create_row(cv,issue_number,issue_title)
+        row = get_row(cv,issue_number,issue_title)
         print("Row: ", row)
 
         if action_type == "edited":
@@ -160,10 +160,11 @@ def createRow(cv, issue_number, issue_title):
 
     return row
 
-def get_or_create_row(cv, issue_number, issue_title):
+def get_row(cv, issue_number, issue_title):
     row = get_row_with_IssueNumber(issue_number)
     if not row:
-        row = createRow(cv, issue_number, issue_title)
+        # row = createRow(cv, issue_number, issue_title)
+        raise SystemExit('Row not found')
     return row
 
 main()
