@@ -85,7 +85,7 @@ def main():
                 setattr(row,property_status,"In Progress")
         elif action_type == "created":
             setattr(row,property_comment,state_comment)
-        elif action_type == "assigned":
+        elif action_type == "assigned" or action_type == "unassigned":
             setattr(row,property_assigned,state_assigned)
         elif action_type == "labeled" or action_type == "unlabeled":
             if state_label != "":
