@@ -90,8 +90,9 @@ def main():
             # Assignee Contact Table Search
             contacts = json.loads(contact_table)
             assignee = contacts[state_assigned]
+            print("Contact List is: ", contacts)
             print("Assignee is: ", assignee)
-            setattr(row,property_assigned,state_assigned)
+            setattr(row,property_assigned,assignee)
         
         elif action_type == "labeled" or action_type == "unlabeled":
             if state_label != "":
