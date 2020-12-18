@@ -89,7 +89,7 @@ def main():
         elif action_type == "assigned" or action_type == "unassigned":
             # Assignee Contact Table Search
             contacts = json.loads(contact_table)
-            old_list = getattr(row,property_assigned)
+            #old_list = getattr(row,property_assigned)
             assignee = contacts[state_assigned]
             print("Assignee is: ", assignee)
             print("Old List: ", old_list)
