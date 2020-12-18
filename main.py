@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import time
 from notion.client import NotionClient
 from notion.block import PageBlock, BookmarkBlock
 from md2notion.upload import upload, convert, uploadBlock
@@ -168,6 +169,7 @@ def createRow(cv, issue_number, issue_title):
 def get_row(cv, issue_number, issue_title):
     row = get_row_with_IssueNumber(issue_number)
     if not row:
+        time.sleep(20)
         # row = createRow(cv, issue_number, issue_title)
         raise SystemExit('Row not found')
     return row
