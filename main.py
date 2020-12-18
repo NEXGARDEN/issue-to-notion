@@ -93,7 +93,7 @@ def main():
             assignee = contacts[state_assigned]
             print("Assignee is: ", assignee)
             print("Old List: ", old_list)
-            setattr(row,property_assigned,assignee)
+            setattr(row,property_assigned,"rromano@pdx.edu")
         
         elif action_type == "labeled" or action_type == "unlabeled":
             if state_label != "":
