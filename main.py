@@ -77,16 +77,19 @@ def main():
             setattr(row,property_status,"On Hold")
             pass
         # TODO
+        
         elif action_type == "reopened":
             setattr(row,property_issue,state_issue_open)
             if state_milestone == "N/A" or state_milestone == "":
                 setattr(row,property_status,"Planned")
             else:
                 setattr(row,property_status,"In Progress")
+        
         elif action_type == "created":
             setattr(row,property_comment,state_comment)
+        
         elif action_type == "assigned" or action_type == "unassigned":
-            print("Assignee is: ", assignee)
+            print("Assignee is: ", state_assigned)
             setattr(row,property_assigned,state_assigned)
         
         elif action_type == "labeled" or action_type == "unlabeled":
@@ -97,6 +100,7 @@ def main():
             else:
                 print("Set Label: ", state_label)
                 setattr(row,property_label,state_label)
+        
         elif action_type == "milestoned":
                 print("Set Milestone: ", state_milestone)
                 setattr(row,property_milestone,state_milestone)
@@ -105,6 +109,7 @@ def main():
                 print("Set Milestone: ", "Planned")
                 setattr(row,property_milestone,"N/A")
                 setattr(row,property_status,"Planned")
+        
         else:
             print("Unused Action Type: ", action_type)
 
