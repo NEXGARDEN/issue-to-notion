@@ -26,7 +26,6 @@ property_comment = os.environ.get("PROPERTY_COMMENT","Description")
 state_comment = os.environ.get("STATE_COMMENT")
 property_assigned = os.environ.get("PROPERTY_ASSIGNED","Assigned")
 state_assigned = os.environ.get("STATE_ASSIGNED")
-contact_table = os.environ.get("CONTACT_TABLE")
 
 # Get the event string from github
 with open(path,"r") as f:
@@ -87,12 +86,8 @@ def main():
         elif action_type == "created":
             setattr(row,property_comment,state_comment)
         elif action_type == "assigned" or action_type == "unassigned":
-            # Assignee Contact Table Search
-            contacts = json.loads(contact_table)
-            assignee = contacts[state_assigned]
-            print("Contact List is: ", contacts)
             print("Assignee is: ", assignee)
-            setattr(row,property_assigned,assignee)
+            setattr(row,property_assigned,state_assigned)
         
         elif action_type == "labeled" or action_type == "unlabeled":
             if state_label != "":
