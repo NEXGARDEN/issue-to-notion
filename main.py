@@ -89,8 +89,13 @@ def main():
             setattr(row,property_comment,state_comment)
         
         elif action_type == "assigned" or action_type == "unassigned":
-            print("Assignee is: ", state_assigned)
-            setattr(row,property_assigned,state_assigned)
+            if state_assigned != "":
+                split_assigned = state_assigned.split(",")
+                print("Split Label: ", split_labels)
+                setattr(row,property_assigned,split_assigned)
+            else:          
+                print("Assignee is: ", state_assigned)
+                setattr(row,property_assigned,state_assigned)
         
         elif action_type == "labeled" or action_type == "unlabeled":
             if state_label != "":
