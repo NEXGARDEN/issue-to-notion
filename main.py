@@ -139,7 +139,7 @@ def createRow(cv, issue_number, issue_title):
     setattr(row,property_repo,state_repo)
     setattr(row,property_label,state_label)
     setattr(row,property_milestone,state_milestone)
-    if state_milestone == "N/A" || state_milestone == "":
+    if state_milestone == "N/A" or state_milestone == "":
         setattr(row,property_status,"Planned")
     else:
         setattr(row,property_status,"In Progress")
