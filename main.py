@@ -26,6 +26,7 @@ property_comment = os.environ.get("PROPERTY_COMMENT","Description")
 state_comment = os.environ.get("STATE_COMMENT")
 property_assigned = os.environ.get("PROPERTY_ASSIGNED","Assigned")
 state_assigned = os.environ.get("STATE_ASSIGNED")
+contact_table = os.environ.get("CONTACT_TABLE")
 
 # Get the event string from github
 with open(path,"r") as f:
@@ -44,6 +45,10 @@ def main():
     global github_event_json
     global cv
 
+    # Assignee Contact Table Search
+    assignee = contact_table[state_assigned]
+    print("Assignee is: ", assignee)
+    
     # Get issue title, body and link
     action_type = github_event_json["action"]
     issue_number = github_event_json["issue"]["number"]
