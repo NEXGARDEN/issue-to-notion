@@ -84,16 +84,26 @@ def main():
             else:
                 print("Set Label: ", state_label)
                 setattr(row,property_label,state_label)
-        elif action_type == "milestone" or action_type == "demilestone":
-            if state_milestone != "":
+        elif action_type == "milestoned":
+            if state_milestone != "N/A" and state_milestone != "":
                 split_milestone = state_milestone.split(",")
                 print("Split Milestone: ", split_milestone)
                 setattr(row,property_milestone,split_milestone)
                 setattr(row,property_status,"In Progress")
             else:
-                print("Set Label: ", state_milestone)
+                print("Set Milestone: ", state_milestone)
                 setattr(row,property_milestone,state_milestone)
-                setattr(row,property_status,"On Hold")
+                setattr(row,property_status,"Planned")
+        elif action_type == "demilestoned":
+            if state_milestone != "N/A" and state_milestone != "":
+                split_milestone = state_milestone.split(",")
+                print("Split Milestone: ", split_milestone)
+                setattr(row,property_milestone,split_milestone)
+                setattr(row,property_status,"In Progress")
+            else:
+                print("Set Milestone: ", state_milestone)
+                setattr(row,property_milestone,state_milestone)
+                setattr(row,property_status,"Planned")
         else:
             print("Unused Action Type: ", action_type)
 
