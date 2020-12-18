@@ -45,7 +45,7 @@ def main():
     issue_number = github_event_json["issue"]["number"]
     issue_title = github_event_json["issue"]["title"]
     issue_link = github_event_json["issue"]["html_url"]
-
+    
     print("action_type is", action_type)
 
     # Check action type
@@ -75,6 +75,10 @@ def main():
         # TODO
         elif action_type == "reopened":
             setattr(row,property_issue,state_issue_open)
+            if state_milestone == "N/A" or state_milestone == "":
+                setattr(row,property_status,"Planned")
+            else:
+                setattr(row,property_status,"In Progress")
 
         elif action_type == "labeled" or action_type == "unlabeled":
             if state_label != "":
@@ -85,24 +89,12 @@ def main():
                 print("Set Label: ", state_label)
                 setattr(row,property_label,state_label)
         elif action_type == "milestoned":
-            if state_milestone != "N/A" and state_milestone != "":
-                split_milestone = state_milestone.split(",")
-                print("Split Milestone: ", split_milestone)
-                setattr(row,property_milestone,split_milestone)
-                setattr(row,property_status,"In Progress")
-            else:
                 print("Set Milestone: ", state_milestone)
                 setattr(row,property_milestone,state_milestone)
-                setattr(row,property_status,"Planned")
+                setattr(row,property_status,"In Progress")
         elif action_type == "demilestoned":
-            if state_milestone != "N/A" and state_milestone != "":
-                split_milestone = state_milestone.split(",")
-                print("Split Milestone: ", split_milestone)
-                setattr(row,property_milestone,split_milestone)
-                setattr(row,property_status,"In Progress")
-            else:
-                print("Set Milestone: ", state_milestone)
-                setattr(row,property_milestone,state_milestone)
+                print("Set Milestone: ", "Planned")
+                setattr(row,property_milestone,"N/A")
                 setattr(row,property_status,"Planned")
         else:
             print("Unused Action Type: ", action_type)
