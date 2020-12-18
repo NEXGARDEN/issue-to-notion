@@ -86,7 +86,7 @@ def main():
                 setattr(row,property_status,"In Progress")
         
         elif action_type == "created":
-            print("Set Last Comment: ", split_assigned)
+            print("Set Last Comment: ", state_comment)
             setattr(row,property_comment,state_comment)
         
         elif action_type == "assigned" or action_type == "unassigned":
@@ -151,7 +151,10 @@ def createRow(cv, issue_number, issue_title):
     row.task = "[#"+str(issue_number)+"] "+issue_title
     setattr(row,property_issue,state_issue_open)
     setattr(row,property_repo,state_repo)
-    setattr(row,property_label,state_label)
+    split_assigned = state_assigned.split(",")
+    setattr(row,property_assigned,split_assigned)
+    split_labels = state_label.split(",")
+    setattr(row,property_label,split_labels)
     setattr(row,property_milestone,state_milestone)
     if state_milestone == "N/A" or state_milestone == "":
         setattr(row,property_status,"Planned")
